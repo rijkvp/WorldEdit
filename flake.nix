@@ -13,10 +13,12 @@
       {
         devShells.default = mkShell rec {
           buildInputs = [
+            pkg-config
             fontconfig
             openssl
             libxkbcommon
             libGL
+            openal
             vulkan-loader
             wayland
             xorg.libXcursor
@@ -24,7 +26,7 @@
             xorg.libXi
             xorg.libX11
           ];
-          LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";
+          LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
           nativeBuildInputs = with pkgs; [ openjdk17-bootstrap gradle ];
         };
       }

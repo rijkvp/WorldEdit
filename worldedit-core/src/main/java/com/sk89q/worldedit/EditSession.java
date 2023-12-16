@@ -1968,6 +1968,7 @@ public class EditSession implements Extent, AutoCloseable {
      * @return number of blocks changed
      * @throws MaxChangedBlocksException thrown if too many blocks are changed
      */
+    @Deprecated
     public int makePyramid(BlockVector3 position, Pattern block, int size, boolean filled) throws MaxChangedBlocksException {
         int affected = 0;
 
