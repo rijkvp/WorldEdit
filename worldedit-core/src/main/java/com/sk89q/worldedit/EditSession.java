@@ -1959,49 +1959,6 @@ public class EditSession implements Extent, AutoCloseable {
     }
 
     /**
-     * Makes a pyramid.
-     *
-     * @param position a position
-     * @param block a block
-     * @param size size of pyramid
-     * @param filled true if filled
-     * @return number of blocks changed
-     * @throws MaxChangedBlocksException thrown if too many blocks are changed
-     */
-    @Deprecated
-    public int makePyramid(BlockVector3 position, Pattern block, int size, boolean filled) throws MaxChangedBlocksException {
-        int affected = 0;
-
-        int height = size;
-
-        for (int y = 0; y <= height; ++y) {
-            size--;
-            for (int x = 0; x <= size; ++x) {
-                for (int z = 0; z <= size; ++z) {
-
-                    if ((filled && z <= size && x <= size) || z == size || x == size) {
-
-                        if (setBlock(position.add(x, y, z), block)) {
-                            ++affected;
-                        }
-                        if (setBlock(position.add(-x, y, z), block)) {
-                            ++affected;
-                        }
-                        if (setBlock(position.add(x, y, -z), block)) {
-                            ++affected;
-                        }
-                        if (setBlock(position.add(-x, y, -z), block)) {
-                            ++affected;
-                        }
-                    }
-                }
-            }
-        }
-
-        return affected;
-    }
-
-    /**
      * Thaw blocks in a radius.
      *
      * @param position the position
